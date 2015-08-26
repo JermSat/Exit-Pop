@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Exit Pop</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script>   
+
+    function setCookie(cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        var expires = "expires="+d.toGMTString();
+        document.cookie = cname + "=" + cvalue + "; " + expires;
+    }
+ 
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) != -1) return c.substring(name.length,c.length);
+        }
+        return "";
+    }
+
+        jQuery(document).mousemove(function(e){
+                        if((e.pageY - jQuery(window).scrollTop()) <= 5) {
+                            if(!getCookie('exitPop')) {
+                                jQuery('.hpExitPopup').fadeIn(1000);
+                                jQuery('.pageOverlay').fadeIn(1000);
+                                jQuery('html').css('overflow', 'hidden');
+                            }
+                        }
+                    });
+                    jQuery('.hpExitPopup .closeBtn').on('click', function(){
+                        jQuery('.hpExitPopup').fadeOut(1000);
+                        jQuery('.pageOverlay').fadeOut(1000);
+                        jQuery('html').css('overflow', 'auto');
+                        setCookie('exitPop', 'true', 100);
+                    });
+                    jQuery('.hpExitPopup .orangeBtn').on('click', function(){
+                        setCookie('exitPop', 'true', 100);
+                    })
+                });
+    </script>
+    <style type="text/css">
+    .hpExitPopup {
+    position: fixed;
+    top: 15%;
+    max-width: 70%;
+    padding: 2% 4%;
+    height: 350px;
+    width: 800px;
+    left: 50%;
+    margin: 0 0 0 -35%;
+    background: url("/wp-content/themes/minus/images/templates/exitpopBG.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 4px solid #fff;
+    z-index: 9999;
+    -ms-behavior: url(backgroundsize.min.htc);
+
+}
+
+.hpExitPopup .clipboard {
+    background: url("images/clipboard.png");
+    background-repeat: no-repeat;
+    width: 42px;
+    height: 51px;
+    margin: 0 auto;
+}
+
+.hpExitPopup h2 {
+    font-size: 37px;
+    text-align: center;
+    max-width: 74%;
+    margin: 1% auto 0;
+}
+
+.hpExitPopup p {
+    font-size: 18px;
+    line-height: 30px;
+    margin: 12px auto;
+    max-width: 72%;
+    text-align: center;
+}
+
+.hpExitPopup .isForm {
+    background-color: #101010;
+    background-color: rgb(16, 16, 16);
+    background-color: rgba(16, 16, 16, 0.9);
+    padding: 4% 2%;
+    overflow: hidden;
+}
+
+.hpExitPopup label {
+    display: none;
+}
+
+.hpExitPopup .infusion-field {
+    display: inline-block;
+    width: 33%;
+}
+
+.hpExitPopup .infusion-submit {
+    display: inline-block;
+    width: 32%;
+}
+
+.hpExitPopup .infusion-field input {
+    border: medium none;
+    border-radius: 4px;
+    height: 40px;
+    padding: 0 5px 0 40px;
+    width: 75%;
+    font-size: 16px;
+}
+
+.hpExitPopup form.infusion-form {
+    padding: 0;
+    max-width: 96%;
+    margin: 0 auto;
+}
+
+.hpExitPopup .infusion-submit input {
+    width: 100%;
+    font-size: 16px;
+}
+
+.hpExitPopup .closeBtn {
+    right: 12px;
+    position: absolute;
+    top: 20px;
+    cursor: pointer;
+    background: transparent;
+    box-shadow: none;
+    font-weight: 100 !important;
+}
+.hpExitPopup .isForm {
+    background-color: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    padding: 4% 2%;
+    position: relative;
+    top: 45px;
+}
+.closeBtn {
+    background: transparent none repeat scroll 0 0;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #e6a225;
+    color: #fff !important;
+    cursor: pointer;
+    font-family: sans-serif;
+    font-size: 28px;
+    font-weight: 100 !important;
+    height: 20px;
+    margin: 0 10px 0 -10px;
+    padding: 6px 10px 13px;
+    text-align: center;
+    transition: all 0.1s ease 0.1s !important;
+    width: 20px;
+}
+
+.closeBtn:hover {
+    background: #fff none repeat scroll 0 0 !important;
+    border: 1px solid #000 !important;
+    box-shadow: 0 0 12px #fff !important;
+    color: #000 !important;
+}
+    </style>
+    </head>
+
+    <body>
+
+        <div class="hpExitPopup" style="display:none;">
+        <div class="closeBtn">X</div>
+        <div class="clipboard"></div>
+        <h2>Heading</h2>
+        <p>Paragraph</p>
+        </div><!--.hpExitPopup-->
+        
+    </body>
+    </html>
